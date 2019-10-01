@@ -25,15 +25,15 @@ class PetsController < ApplicationController
 
   patch '/pets/:id' do 
     # Remove all previous owner    
-    if !params[:pet].keys.include?("owner_ids")
-    params[:owner]["pet_ids"] = []
+    if !params[:pet].keys.include?("owner_id")
+    params[:pet]["owner_id"] = []
     end
     
-    @owner = Owner.find(params[:id])
-    @owner.update(params["owner"])
-    if !params["pet"]["name"].empty?
-      @owner.pets << Pet.create(name: params["pet"]["name"])
+    @pet = Pet.find(params[:id])
+    @pet.update(params["pet"])
+    if !params["owner"]["name"].empty?
+      @pet.owner << Owner.create(name: params["owner"]["name"])
     end
-    redirect "owners/#{@owner.id}"
+    redirect "pets/#{@pet.id}"
   end
 end
