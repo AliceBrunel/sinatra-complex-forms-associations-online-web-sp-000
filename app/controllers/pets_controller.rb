@@ -18,6 +18,7 @@ class PetsController < ApplicationController
         
       end
       
+      # Manually save because no shovel operator
       @pet.save
       
     redirect "/pets/#{@pet.id}"
@@ -46,7 +47,7 @@ class PetsController < ApplicationController
     if !params["owner"]["name"].empty?
       @pet.owner = Owner.create(name: params["owner"]["name"])
     end
-    
+    # Manually save because no shovel operator
     @pet.save
     
     redirect "pets/#{@pet.id}"
