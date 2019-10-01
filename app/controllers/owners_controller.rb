@@ -1,4 +1,4 @@
-class OwnersController < ApplicationController
+@class OwnersController < ApplicationController
 
   get '/owners' do
     @owners = Owner.all
