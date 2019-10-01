@@ -39,8 +39,8 @@ class PetsController < ApplicationController
 
   patch '/pets/:id' do 
     # Remove all previous owner    
-    if !params[:pet].keys.include?("owner_id")
-    params[:pet]["owner_id"] = []
+    if !params["owner"]["name"].empty?
+      @pet.owner = Owner.create(name: params["owner"]["name"])
     end
     
     @pet = Pet.find(params[:id])
